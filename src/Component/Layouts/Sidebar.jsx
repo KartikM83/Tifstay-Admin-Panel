@@ -108,7 +108,7 @@ const menuItems = [
 
   {
     label: "Offers & Discount",
-    icon: <img src={offer} className="w-6 h-6" />,
+    icon: <MdOutlineLocalOffer className="w-5 h-5" />,
     type: "dropdown",
     children: [
       {
