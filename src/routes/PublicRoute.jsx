@@ -12,6 +12,11 @@ import Details from "../pages/module/ListingManagementCom/Details";
 import EditDetails from "../pages/module/ListingManagementCom/EditDetails";
 import { list } from "postcss";
 import EditTiffinDetails from "../pages/module/ListingManagementCom/EditTiffinDetails";
+import Reviews from "../pages/module/reviews";
+import ChatList from "../pages/module/ChatList/chatlist";
+import ChatDetails from "../pages/module/ChatList/chatListDetails";
+import Security from "../pages/module/securityLog";
+
 
 function PublicRoute() {
   const initialUsers = [
@@ -104,7 +109,6 @@ function PublicRoute() {
     },
   ];
 
-
   const pgListings = [
     {
       id: 1,
@@ -112,98 +116,102 @@ function PublicRoute() {
       phone: "9876543210",
       address: "123, Green Valley Road, Dharampeth, Nagpur - 440010",
       status: "Rejected",
-      type:"Boys Hostel",
-      troom:6,
-      tbed:30,
-      description:"A well-maintained girls hostel with all modern amenities. Located in a prime area with easy access to colleges and hospitals. Safe and secure environment with 24/7 security.",
-      priceDay:300,
-      priceWeekly:2000,
-      priceMonthly:8000,
-      offer:10,
-      securityDeposit:15000
-      
-   
+      type: "Boys Hostel",
+      troom: 6,
+      tbed: 30,
+      description:
+        "A well-maintained girls hostel with all modern amenities. Located in a prime area with easy access to colleges and hospitals. Safe and secure environment with 24/7 security.",
+      priceDay: 300,
+      priceWeekly: 2000,
+      priceMonthly: 8000,
+      offer: 10,
+      securityDeposit: 15000,
     },
     {
-    id: 2,
-    name: "CityNest Girls Hostel",
-    phone: "9123456789",
-    address: "45, Rosewood Lane, Ramdaspeth, Nagpur - 440012",
-    status: "Approved",
-    type: "Girls Hostel",
-    troom: 8,
-    tbed: 40,
-    description: "Modern girls hostel with study rooms, WiFi, and nutritious meals. Walking distance from major coaching centers and colleges.",
-    priceDay: 350,
-    priceWeekly: 2200,
-    priceMonthly: 8500,
-    offer: 5,
-    securityDeposit: 12000
-  },
-  {
-    id: 3,
-    name: "Comfort Stay PG",
-    phone: "9812345670",
-    address: "78, Lake View Society, Pratap Nagar, Nagpur - 440015",
-    status: "Pending",
-    type: "Co-ed PG",
-    troom: 10,
-    tbed: 50,
-    description: "Affordable co-ed PG with all facilities including AC rooms, laundry, and mess. Peaceful locality, ideal for students and professionals.",
-    priceDay: 280,
-    priceWeekly: 1800,
-    priceMonthly: 7500,
-    offer: 8,
-    securityDeposit: 10000
-  },
-  {
-    id: 4,
-    name: "Elite Homes Boys Hostel",
-    phone: "9988776655",
-    address: "201, Shankar Nagar, Hingna Road, Nagpur - 440016",
-    status: "Approved",
-    type: "Boys Hostel",
-    troom: 12,
-    tbed: 60,
-    description: "Spacious hostel with gym, recreational room, and hygienic mess. CCTV surveillance and biometric entry for security.",
-    priceDay: 320,
-    priceWeekly: 2100,
-    priceMonthly: 7800,
-    offer: 12,
-    securityDeposit: 14000
-  },
-  {
-    id: 5,
-    name: "Student Nest Girls PG",
-    phone: "9090909090",
-    address: "5, Lotus Apartments, Trimurti Nagar, Nagpur - 440022",
-    status: "Rejected",
-    type: "Girls Hostel",
-    troom: 5,
-    tbed: 25,
-    description: "Cozy PG for girls with friendly staff, homely food, and individual study tables. Perfect for serious students.",
-    priceDay: 310,
-    priceWeekly: 1950,
-    priceMonthly: 7900,
-    offer: 15,
-    securityDeposit: 13000
-  },
-  {
-    id: 6,
-    name: "Aspire PG for Working Men",
-    phone: "9876512345",
-    address: "12, Tech Park Road, IT Hub, Nagpur - 440024",
-    status: "Approved",
-    type: "Boys Hostel",
-    troom: 15,
-    tbed: 70,
-    description: "Ideal PG for working professionals. High-speed internet, backup power, and workstations available 24/7.",
-    priceDay: 400,
-    priceWeekly: 2500,
-    priceMonthly: 9000,
-    offer: 10,
-    securityDeposit: 16000
-  }
+      id: 2,
+      name: "CityNest Girls Hostel",
+      phone: "9123456789",
+      address: "45, Rosewood Lane, Ramdaspeth, Nagpur - 440012",
+      status: "Approved",
+      type: "Girls Hostel",
+      troom: 8,
+      tbed: 40,
+      description:
+        "Modern girls hostel with study rooms, WiFi, and nutritious meals. Walking distance from major coaching centers and colleges.",
+      priceDay: 350,
+      priceWeekly: 2200,
+      priceMonthly: 8500,
+      offer: 5,
+      securityDeposit: 12000,
+    },
+    {
+      id: 3,
+      name: "Comfort Stay PG",
+      phone: "9812345670",
+      address: "78, Lake View Society, Pratap Nagar, Nagpur - 440015",
+      status: "Pending",
+      type: "Co-ed PG",
+      troom: 10,
+      tbed: 50,
+      description:
+        "Affordable co-ed PG with all facilities including AC rooms, laundry, and mess. Peaceful locality, ideal for students and professionals.",
+      priceDay: 280,
+      priceWeekly: 1800,
+      priceMonthly: 7500,
+      offer: 8,
+      securityDeposit: 10000,
+    },
+    {
+      id: 4,
+      name: "Elite Homes Boys Hostel",
+      phone: "9988776655",
+      address: "201, Shankar Nagar, Hingna Road, Nagpur - 440016",
+      status: "Approved",
+      type: "Boys Hostel",
+      troom: 12,
+      tbed: 60,
+      description:
+        "Spacious hostel with gym, recreational room, and hygienic mess. CCTV surveillance and biometric entry for security.",
+      priceDay: 320,
+      priceWeekly: 2100,
+      priceMonthly: 7800,
+      offer: 12,
+      securityDeposit: 14000,
+    },
+    {
+      id: 5,
+      name: "Student Nest Girls PG",
+      phone: "9090909090",
+      address: "5, Lotus Apartments, Trimurti Nagar, Nagpur - 440022",
+      status: "Rejected",
+      type: "Girls Hostel",
+      troom: 5,
+      tbed: 25,
+      description:
+        "Cozy PG for girls with friendly staff, homely food, and individual study tables. Perfect for serious students.",
+      priceDay: 310,
+      priceWeekly: 1950,
+      priceMonthly: 7900,
+      offer: 15,
+      securityDeposit: 13000,
+    },
+    {
+      id: 6,
+      name: "Aspire PG for Working Men",
+      phone: "9876512345",
+      address: "12, Tech Park Road, IT Hub, Nagpur - 440024",
+      status: "Approved",
+      type: "Boys Hostel",
+      troom: 15,
+      tbed: 70,
+      description:
+        "Ideal PG for working professionals. High-speed internet, backup power, and workstations available 24/7.",
+      priceDay: 400,
+      priceWeekly: 2500,
+      priceMonthly: 9000,
+      offer: 10,
+      securityDeposit: 16000,
+    },
   ];
 
   const [users, setUsers] = useState(initialUsers);
@@ -217,15 +225,48 @@ function PublicRoute() {
       {/* Layout wrapper */}
       <Route path="/" element={<Layout />}>
         {/* -------- User Management -------- */}
-        <Route path="users/:role" element={<Owner users={users} setUsers={setUsers}/>} />
-        <Route path="users/:role/create" element={<CreateOwner users={users} setUsers={setUsers}/>} />
-        <Route path="users/:role/edit/:id" element={<EditOwner users={users} setUsers={setUsers} />} />
-        <Route path="users/:role/:id" element={<RenderDetailsByRole users={users} setUsers={setUsers} />} />
+        <Route
+          path="users/:role"
+          element={<Owner users={users} setUsers={setUsers} />}
+        />
+        <Route
+          path="users/:role/create"
+          element={<CreateOwner users={users} setUsers={setUsers} />}
+        />
+        <Route
+          path="users/:role/edit/:id"
+          element={<EditOwner users={users} setUsers={setUsers} />}
+        />
+        <Route
+          path="users/:role/:id"
+          element={<RenderDetailsByRole users={users} setUsers={setUsers} />}
+        />
 
         {/* -------- Listing Management -------- */}
-        <Route path="listings/:listing" element={<PgListing users={listing} setUsers={setListing} />} />
-        <Route path="listings/:listing/:id" element={<Details users={listing} setUsers={setListing} />} />
-        <Route path="listings/:listing/edit/:id" element={<RenderEditDetailsByRole users={listing} setUsers={setListing} />} />
+        <Route
+          path="listings/:listing"
+          element={<PgListing users={listing} setUsers={setListing} />}
+        />
+        <Route
+          path="listings/:listing/:id"
+          element={<Details users={listing} setUsers={setListing} />}
+        />
+        <Route
+          path="listings/:listing/edit/:id"
+          element={
+            <RenderEditDetailsByRole users={listing} setUsers={setListing} />
+          }
+        />
+        {/*Rating and reviews part */}
+        <Route path="/reviews" element={<Reviews />} />
+
+        {/*Chatlist part */}
+        <Route path="/chats" element={<ChatList />} />
+        <Route path="/chats/:chatId" element={<ChatDetails />} />
+
+         {/*Security Log part */}
+        <Route path="/security" element={<Security />} />
+
       </Route>
     </Routes>
   );
