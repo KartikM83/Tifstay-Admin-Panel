@@ -10,7 +10,9 @@ import CreateOwner from "../pages/module/UserManagementComp/CreateOwner";
 import PgListing from "../pages/module/ListingManagementCom/PgListing";
 import Details from "../pages/module/ListingManagementCom/Details";
 import EditDetails from "../pages/module/ListingManagementCom/EditDetails";
+import { list } from "postcss";
 import EditTiffinDetails from "../pages/module/ListingManagementCom/EditTiffinDetails";
+<<<<<<< HEAD
 <<<<<<< HEAD
 import CouponsPage  from "../pages/module/offers&Discount/CouponsPage";
 import OffersPage  from "../pages/module/offers&Discount/OffersPage";
@@ -33,6 +35,8 @@ import Security from "../pages/module/securityLog";
 import ChatList from "../pages/module/ChatList/chatList";
 import ChatDetails from "../pages/module/ChatList/chatListDetails";
 >>>>>>> 67a2b776fbc2b036b7bcae0850d1a95bc2a17c2b
+=======
+>>>>>>> parent of 18e6fdf (added offers&Discounts)
 
 function PublicRoute() {
   const initialUsers = [
@@ -593,6 +597,7 @@ const dashboardDatas = [
         <Route path="listings/:listing" element={<PgListing users={listing} setUsers={setListing} />} />
         <Route path="listings/:listing/:id" element={<Details users={listing} setUsers={setListing} />} />
         <Route path="listings/:listing/edit/:id" element={<RenderEditDetailsByRole users={listing} setUsers={setListing} />} />
+<<<<<<< HEAD
         
         {/* -------- offers & Discount -------- */}
         {/* Sidebar-friendly paths */}
@@ -631,6 +636,9 @@ const dashboardDatas = [
 
       </Route>
 >>>>>>> 67a2b776fbc2b036b7bcae0850d1a95bc2a17c2b
+=======
+      </Route>
+>>>>>>> parent of 18e6fdf (added offers&Discounts)
     </Routes>
   );
 }
