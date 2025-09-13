@@ -9,6 +9,12 @@ import { CiViewList } from "react-icons/ci";
 import { GiCardboardBox } from "react-icons/gi";
 import { BsFillCreditCardFill } from "react-icons/bs";
 import { BiSolidOffer } from "react-icons/bi";
+import { RiCoupon4Line } from "react-icons/ri";
+import { MdOutlineLocalOffer } from "react-icons/md";
+import { RiDiscountPercentLine } from "react-icons/ri";
+
+
+
 
 const menuItems = [
   {
@@ -60,31 +66,41 @@ const menuItems = [
     type: "dropdown",
     children: [
       {
-        label: "PG/Hostel Listings",
-        path: "/listings/pglisting",
+        label: "PG/Hostel Bookings",
+        path: "/bookings/pg",
         icon: <HiBuildingOffice2 className="w-5 h-5" />,
       },
       {
-        label: "Tiffin/Restaurant Listings",
-        path: "/listings/restaurantlisting",
+        label: "TTiffin/Restaurant Orders",
+        path: "/bookings/restaurant",
         icon: <IoMdRestaurant className="w-5 h-5" />,
       },
     ],
   },
 
   {
-    label: "Payment Management",
+    label: "Payment & Wallet",
     icon: <BsFillCreditCardFill className="w-6 h-6" />,
     type: "dropdown",
     children: [
       {
-        label: "PG/Hostel Listings",
-        path: "/listings/pglisting",
+        label: "Payments Overview",
+        path: "/payments/overview",
         icon: <HiBuildingOffice2 className="w-5 h-5" />,
       },
       {
-        label: "Tiffin/Restaurant Listings",
-        path: "/listings/restaurantlisting",
+        label: "Wallet Transactions",
+        path: "/payments/wallet-transactions",
+        icon: <IoMdRestaurant className="w-5 h-5" />,
+      },
+      {
+        label: "Payout History",
+        path: "/payments/payout-history",
+        icon: <IoMdRestaurant className="w-5 h-5" />,
+      },
+      {
+        label: "Deposit Refund Requests",
+        path: "/payments/deposit-refund-requests",
         icon: <IoMdRestaurant className="w-5 h-5" />,
       },
     ],
@@ -92,18 +108,23 @@ const menuItems = [
 
   {
     label: "Offers & Discount",
-    icon: <BiSolidOffer className="w-6 h-6" />,
+    icon: <MdOutlineLocalOffer className="w-5 h-5" />,
     type: "dropdown",
     children: [
       {
-        label: "PG/Hostel Listings",
-        path: "/listings/pglisting",
-        icon: <HiBuildingOffice2 className="w-5 h-5" />,
+        label: "Coupon",
+        path: "/offers/coupon",
+        icon: <RiCoupon4Line className="w-5 h-5" />,
       },
       {
-        label: "Tiffin/Restaurant Listings",
-        path: "/listings/restaurantlisting",
-        icon: <IoMdRestaurant className="w-5 h-5" />,
+        label: "Offer",
+        path: "/offers/offer",
+        icon: <MdOutlineLocalOffer className="w-5 h-5" />,
+      },  
+            {
+        label: "Discount",
+        path: "/offers/discount",
+        icon: <RiDiscountPercentLine className="w-5 h-5" />,
       },
     ],
   },
