@@ -10,16 +10,19 @@ import CreateOwner from "../pages/module/UserManagementComp/CreateOwner";
 import PgListing from "../pages/module/ListingManagementCom/PgListing";
 import Details from "../pages/module/ListingManagementCom/Details";
 import EditDetails from "../pages/module/ListingManagementCom/EditDetails";
-import { list } from "postcss";
 import EditTiffinDetails from "../pages/module/ListingManagementCom/EditTiffinDetails";
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 18e6fdf (added offers&Discounts)
 import CouponsPage  from "../pages/module/offers&Discount/CouponsPage";
 import OffersPage  from "../pages/module/offers&Discount/OffersPage";
 import DiscountPage  from "../pages/module/offers&Discount/DiscountPage";
 import NotFound from "../pages/module/offers&Discount/NotFound";
 
+<<<<<<< HEAD
 =======
 import Booking from "../pages/module/Booking and orders/Booking";
 import BookingDetails from "../pages/module/Booking and orders/BookingDetails";
@@ -40,6 +43,8 @@ import ChatDetails from "../pages/module/ChatList/chatListDetails";
 >>>>>>> parent of 18e6fdf (added offers&Discounts)
 =======
 >>>>>>> parent of 18e6fdf (added offers&Discounts)
+=======
+>>>>>>> 18e6fdf (added offers&Discounts)
 
 function PublicRoute() {
   const initialUsers = [
@@ -602,6 +607,9 @@ const dashboardDatas = [
         <Route path="listings/:listing/edit/:id" element={<RenderEditDetailsByRole users={listing} setUsers={setListing} />} />
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 18e6fdf (added offers&Discounts)
         
         {/* -------- offers & Discount -------- */}
         {/* Sidebar-friendly paths */}
@@ -615,6 +623,7 @@ const dashboardDatas = [
         {/* 404 Not Found */}
         <Route path="*" element={<NotFound />} />
         </Route>
+<<<<<<< HEAD
 =======
         <Route path="listings/:listing" element={<RenderListingByType />} />
         <Route path="listings/:listing/:id" element={<RenderDetailsByType />} />
@@ -646,6 +655,8 @@ const dashboardDatas = [
 =======
       </Route>
 >>>>>>> parent of 18e6fdf (added offers&Discounts)
+=======
+>>>>>>> 18e6fdf (added offers&Discounts)
     </Routes>
   );
 }
