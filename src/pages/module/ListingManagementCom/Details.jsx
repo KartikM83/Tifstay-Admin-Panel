@@ -11,6 +11,7 @@
   import logo from "../../../assets/image.png";
   import veg from "../../../assets/veg.png";
   import { MdOutlineWatchLater } from "react-icons/md";
+  import { GiChickenOven } from "react-icons/gi";
   function Details({users, setUsers}){
 
     const { id, listing } = useParams();
@@ -125,31 +126,58 @@
                       </div>
                       )}
 
-                      <div className="w-full min-h-[315px] flex flex-col gap-4">
-                          <div className="font-inter font-semibold text-[24px]">Maharashtrian Ghar Ka Khana</div>
+                      {listing ==="restaurantlisting" && (<div className="w-full min-h-[315px] flex flex-col gap-4">
+                          <div className="font-inter font-semibold text-[24px]">{user.name}</div>
                           <p className="font-medium text-[16px] text-[#666060]">{user.description}</p>
 
                           <div className="w-full h-[25px] flex gap-2 items-center">
-                              <div className="flex items-center justify-center gap-2 min-w-[78px] min-h-[28px] rounded-[35px] px-3 py-1 bg-[#1DB435] font-medium text-[14px] text-white"> <img src={veg} alt="" /> Veg</div>
+                              {user.foodType?.split(',').map((type, index) => {
+  const trimmedType = type.trim().toLowerCase(); // normalize case
+
+  const isVeg = trimmedType === 'veg';
+
+  return (
+    <div
+      key={index}
+      className={`flex items-center justify-center gap-2 min-w-[90px] min-h-[28px] 
+        rounded-[35px] px-3 py-1
+        ${isVeg ? 'bg-[#1DB435]' : 'bg-[#FF383C]'}
+        font-medium text-[14px] text-white`}
+    >
+      <img
+        src={isVeg ? veg : <GiChickenOven />}
+        alt={isVeg ? "Veg" : "Non-Veg"}
+        className="w-[16px] h-[16px]"
+      />
+      {isVeg ? 'Veg' : 'Non-Veg'}
+    </div>
+  );
+})}
+
                               <div className="font-medium text-[14px] text-[#666060] flex items-center justify-center gap-1"><SlLocationPin className="w-4 h-4" /> {locality}</div>
-                              <div className="font-medium text-[14px] text-[#666060] flex items-center justify-center gap-1"><MdOutlineWatchLater className="w-4 h-4" />  7:00 AM - 10:00 PM</div>
+                              <div className="font-medium text-[14px] text-[#666060] flex items-center justify-center gap-1"><MdOutlineWatchLater className="w-4 h-4" />  {user.startTime} - {user.endTime}</div>
                           </div>    
 
                           <div className="min-h-[135px] bg-[#F5F5F5] p-4 rounded-[12px] flex justify-between items-center ">
                               <div className="w-full flex flex-col gap-2">
                                   <div className="font-semibold font-inter text-[20px] text-[#004AAD]">With One Meal (Veg) </div>
                                   <div className="flex justify-between ">
-                                    <div className="flex flex-col gap-2 ">
-                                      <div className="font-medium text-[14px] text-[#666060] text-base leading-[1.2]" >Dining ₹120/day</div>
-                                      <div className="font-medium text-[14px] text-[#666060] text-base leading-[1.2]" >Dining ₹800/week</div>
-                                      <div className="font-medium text-[14px] text-[#666060] text-base leading-[1.2]" >Dining ₹3200/Month</div>
-                                    </div>
-
-                                    <div className="flex flex-col gap-2">
-                                      <div className="font-medium text-[14px] text-[#666060] text-base leading-[1.2]" >Dining ₹120/day</div>
-                                      <div className="font-medium text-[14px] text-[#666060] text-base leading-[1.2]" >Dining ₹800/week</div>
-                                      <div className="font-medium text-[14px] text-[#666060] text-base leading-[1.2]" >Dining ₹3200/Month</div>
-                                    </div>
+                                    {user.orderType?.split(",").map((type, index) => {
+        const trimmedType = type.trim();
+        return (
+          <div key={index} className="flex flex-col gap-2">
+            <div className="font-medium text-[14px] text-[#666060] leading-[100%] align-middle">
+              {trimmedType} ₹120/day
+            </div>
+            <div className="font-medium text-[14px] text-[#666060] leading-[100%] align-middle">
+              {trimmedType} ₹800/week
+            </div>
+            <div className="font-medium text-[14px] text-[#666060] leading-[100%] align-middle">
+              {trimmedType} ₹3200/month
+            </div>
+          </div>
+        );
+      })}
 
                                     <div className="flex items-center justify-center">
                                     <div className="min-w-[91px] min-h-[33px] rounded-[50px] px-4 py-2 bg-[#3A88FE] text-white font-medium text-[14px] text-white">{user.offer}% OFF</div>
@@ -160,7 +188,7 @@
 
                               
                           </div>
-                      </div>
+                      </div>)}
                   </div>
                       
 

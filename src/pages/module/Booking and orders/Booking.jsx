@@ -9,14 +9,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import logo from "../../../assets/image.png";
 import { FaRegEdit } from "react-icons/fa";
 
-import dataConfig from "./DataConfig";
+import bookingConfig from "./BookingConfig";
 
-function PgListing({ users, setUsers }) {
+function Booking({ users, setUsers }) {
 
-   const { listing } = useParams(); 
+   const { booking } = useParams(); 
   //  console.log(listing);
    
-   const cfg = dataConfig[listing] ?? data.guests ;
+   const cfg = bookingConfig[booking] ?? bookingConfig.guests ;
   //  console.log(cfg);
   //  console.log(cfg.listTitle);
 
@@ -55,7 +55,7 @@ function PgListing({ users, setUsers }) {
   const searchFilteredUsers = users.filter((user) => {
     const query = searchQuery.toLowerCase();
     return (
-      user.name.toLowerCase().includes(query) || user.phone.includes(query)
+      user.bookingId.toString().includes(query) 
     );
   });
 
@@ -106,7 +106,7 @@ function PgListing({ users, setUsers }) {
           <IoIosSearch className="w-5 h-5 text-gray-500" />
           <input
             type="text"
-            placeholder="Search by name, mobile no."
+            placeholder={cfg.search}
             value={searchQuery}
             onChange={(e) => {
               setSearchQuery(e.target.value);
@@ -191,61 +191,59 @@ function PgListing({ users, setUsers }) {
 
                <label
                 className={`flex items-center gap-2 mb-2 px-2 py-1 rounded cursor-pointer ${
-                  selectedStatus.includes("Approved")
+                  selectedStatus.includes("Confirmed")
                     ? "text-[#FF6B00] font-medium"
                     : "text-gray-700"
                 }`}
               >
                 <input
                   type="checkbox"
-                  checked={selectedStatus.includes("Approved")}
-                  onChange={() => toggleStatus("Approved")}
+                  checked={selectedStatus.includes("Confirmed")}
+                  onChange={() => toggleStatus("Confirmed")}
                   className="hidden"
                 />
                 <span
                   className={`w-5 h-5 flex items-center justify-center border rounded ${
-                    selectedStatus.includes("Approved")
+                    selectedStatus.includes("Confirmed")
                       ? "bg-[#FF6B00] border-[#FF6B00] text-white"
                       : "border-gray-400 text-transparent"
                   }`}
                 >
                   ✓
                 </span>
-                Approved
+                Confirmed
               </label>
 
               {/* Blocked Option */}
               <label
                 className={`flex items-center gap-2 px-2 py-1 rounded cursor-pointer ${
-                  selectedStatus.includes("Rejected")
+                  selectedStatus.includes("Canceled")
                     ? "text-[#FF6B00] font-medium"
                     : "text-gray-700"
                 }`}
               >
                 <input
                   type="checkbox"
-                  checked={selectedStatus.includes("Rejected")}
-                  onChange={() => toggleStatus("Rejected")}
+                  checked={selectedStatus.includes("Canceled")}
+                  onChange={() => toggleStatus("Canceled")}
                   className="hidden"
                 />
                 <span
                   className={`w-5 h-5 flex items-center justify-center border rounded ${
-                    selectedStatus.includes("Rejected")
+                    selectedStatus.includes("Canceled")
                       ? "bg-[#FF6B00] border-[#FF6B00] text-white"
                       : "border-gray-400 text-transparent"
                   }`}
                 >
                   ✓
                 </span>
-                Rejected
+                Canceled
               </label>
 
               
             </div>
           )}
         </div>
-
-        
         {/* Table */}
         <div className="overflow-x-auto flex-1 font-inter pb-6">
           <table className="w-full text-center border-separate border-spacing-y-2">
@@ -265,14 +263,14 @@ function PgListing({ users, setUsers }) {
                   <td className="px-4 py-3 align-middle">
                     {indexOfFirstUser + index + 1}
                   </td> 
-                  <td className="px-4 py-3 align-middle">{user.name}</td>
-                  <td className="px-4 py-3 align-middle">{user.phone}</td>
+                  <td className="px-4 py-3 align-middle">{user.bookingId}</td>
+                  <td className="px-4 py-3 align-middle">{user.customerName}</td>
                   <td className="px-4 py-3 align-middle whitespace-normal break-words text-center truncate max-w-[300px]">
-                    {user.address}
+                    {user.pgName}
                   </td>
                   <td
                     className={`px-4 py-3 align-middle font-medium ${
-                      user.status === "Approved"
+                      user.status === "Confirmed"
                         ? "text-[#34C759]"
                         : user.status==="Pending" ?"text-[#FFCC00]":"text-[#FF383C]"
                     }`}
@@ -285,36 +283,13 @@ function PgListing({ users, setUsers }) {
                         className="text-orange-500 hover:text-orange-600"
                         title="View"
                         onClick={() =>
-                          navigate(`/listings/${listing}/${user.id}`, { state: { user } })
+                          navigate(`/bookings/${booking}/${user.id}`, { state: { user } })
                         }
                       >
                         <FiEye className="w-6 h-6" />
                       </button>
 
-                      
-
-                        <button
-                        className="text-orange-500 hover:text-orange-600"
-                        title="Edit"
-                        onClick={() =>
-                          navigate(`/listings/${listing}/edit/${user.id}`, {
-                            state: { user },
-                          })
-                        }
-                      >
-                        <FaRegEdit className="w-6 h-6" />
-                      </button>
-
-                        
-                     
-                      
-                      <button
-                        className="text-orange-500 hover:text-orange-600"
-                        title="DeleteZ"
-                        onClick={() => handleDeleteClick(user)}
-                      >
-                        <RiDeleteBin6Line className="w-6 h-6" />
-                      </button>
+                
                     </div>
                   </td>
                 </tr>
@@ -324,7 +299,7 @@ function PgListing({ users, setUsers }) {
         </div>
 
         {/* Footer Pagination */}
-        <div className="flex justify-between items-center text-sm text-gray-600 rounded-[8px] px-4 py-2 bg-[#F5F5F5]">
+       <div className="flex justify-between items-center text-sm text-gray-600 rounded-[8px] px-4 py-2 bg-[#F5F5F5]">
           <p>
             Showing {currentUsers.length} of {filteredUsers.length} Entries
           </p>
@@ -391,4 +366,4 @@ function PgListing({ users, setUsers }) {
   );
 }
 
-export default PgListing;
+export default Booking;
