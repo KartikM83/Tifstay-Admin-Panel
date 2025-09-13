@@ -102,7 +102,7 @@ const [accountHolderName, setAccountHolderName] = useState(user.accountHolderNam
 
       {/* Main Card */}
       <div className="bg-white px-4 py-4 flex flex-col gap-6 items-center">
-        <div className="w-full min-h-[600px] p-6 rounded-[8px] bg-white shadow border border-[#D9D9D9] flex flex-col gap-6 border border-[#A5A5A5]">
+        <div className="w-full min-h-[600px] p-6 rounded-[8px] bg-white shadow flex flex-col gap-6 border border-[#A5A5A5]">
           {/* Profile Info */}
 
           {/* Form Section */}

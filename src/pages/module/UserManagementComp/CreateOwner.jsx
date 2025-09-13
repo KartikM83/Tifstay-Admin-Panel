@@ -113,9 +113,7 @@ const [isEditable ,setIsEditable] = useState(false);
       {/* Main Card */}
       <div className="bg-white px-4 py-4 flex flex-col gap-6 items-center">
         <div className="w-full min-h-[600px] p-6 rounded-[8px] bg-white shadow border border-[#D9D9D9] flex flex-col gap-6 border border-[#A5A5A5]">
-          {/* Profile Info */}
-
-          {/* Form Section */}
+         
 
           <div className=" p-4 border border-[#A5A5A5] rounded-[16px] flex flex-col gap-4">
             <div className="text-gray-700 text-xl font-semibold">

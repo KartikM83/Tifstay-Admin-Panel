@@ -27,6 +27,7 @@ const [isEditable ,setIsEditable] = useState(false);
       );
     }
 
+    <div>Kartik</div>
 
 const [profile, setProfile] = useState(user.profile);
 const [name, setName] = useState(user.name);
@@ -101,7 +102,7 @@ const [accountHolderName, setAccountHolderName] = useState(user.accountHolderNam
 
       {/* Main Card */}
       <div className="bg-white px-4 py-4 flex flex-col gap-6 items-center">
-        <div className="w-full min-h-[600px] p-6 rounded-[8px] bg-white shadow border border-[#D9D9D9] flex flex-col gap-6 border border-[#A5A5A5]">
+        <div className="w-full min-h-[600px] p-6 rounded-[8px] bg-white shadow flex flex-col gap-6 border border-[#A5A5A5]">
           {/* Profile Info */}
 
           {/* Form Section */}
@@ -302,7 +303,7 @@ const [accountHolderName, setAccountHolderName] = useState(user.accountHolderNam
 
         {showPopup && (
           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40">
-            <div className="bg-white rounded-lg shadow-lg p-6 w-[450px]  flex flex-col gap-4 flex flex-col items-center">
+            <div className="bg-white rounded-lg shadow-lg p-6 w-[450px]  flex flex-col gap-4  items-center">
               <img src={logo} alt="" className="w-[246px] h-[56px] "/>
               <h2 className="text-lg font-semibold">{user.status=="Active" ? "Block User" : "Unblock User"}</h2>
               <p className="text-[#666060] text-[16px] font-inter font-regular font-semibold text-center ">
