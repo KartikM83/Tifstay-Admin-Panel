@@ -10,8 +10,12 @@ import CreateOwner from "../pages/module/UserManagementComp/CreateOwner";
 import PgListing from "../pages/module/ListingManagementCom/PgListing";
 import Details from "../pages/module/ListingManagementCom/Details";
 import EditDetails from "../pages/module/ListingManagementCom/EditDetails";
-import { list } from "postcss";
 import EditTiffinDetails from "../pages/module/ListingManagementCom/EditTiffinDetails";
+import CouponsPage  from "../pages/module/offers&Discount/CouponsPage";
+import OffersPage  from "../pages/module/offers&Discount/OffersPage";
+import DiscountPage  from "../pages/module/offers&Discount/DiscountPage";
+import NotFound from "../pages/module/offers&Discount/NotFound";
+
 
 function PublicRoute() {
   const initialUsers = [
@@ -226,7 +230,19 @@ function PublicRoute() {
         <Route path="listings/:listing" element={<PgListing users={listing} setUsers={setListing} />} />
         <Route path="listings/:listing/:id" element={<Details users={listing} setUsers={setListing} />} />
         <Route path="listings/:listing/edit/:id" element={<RenderEditDetailsByRole users={listing} setUsers={setListing} />} />
-      </Route>
+        
+        {/* -------- offers & Discount -------- */}
+        {/* Sidebar-friendly paths */}
+        <Route path ="offers/coupon" element={<CouponsPage />}/>
+        <Route path ="offers/offer" element={<OffersPage />}/>
+        <Route path ="offers/discount" element={<DiscountPage />}/>
+        {/* Short aliases (optional) */}
+        <Route path ="coupons" element={<CouponsPage />}/>
+        <Route path ="offers" element={<OffersPage />}/>
+        <Route path ="discount" element={<DiscountPage />}/>
+        {/* 404 Not Found */}
+        <Route path="*" element={<NotFound />} />
+        </Route>
     </Routes>
   );
 }
