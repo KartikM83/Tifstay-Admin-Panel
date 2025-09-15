@@ -55,6 +55,7 @@ export function DiscountForm({ mode, discount, onSubmit,  }) {
                 <select value={formData.offerOn} onChange={(e)=>handleChange('offerOn', e.target.value)} className="h-11 w-full border border-gray-300 rounded-md px-3 focus:border-blue-500">
                   <option value="PG/Hostel">PG/Hostel</option>
                   <option value="Tiffin/Restaurant">Tiffin/Restaurant</option>
+                  <option value="Both">Both</option>
                   
                 </select>
               </div>
