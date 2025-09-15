@@ -17,7 +17,7 @@ const Alerts = () => {
       vendor: "Vikram Joshi",
       subject: "Vendor license is expired",
       bg: "bg-[#EBF6FE]",
-      icon: <TbCalendarTime className="w-6 h-6 text-blue-600" />,
+      icon: <TbCalendarTime className="w-6 h-6 text-[#004AAD]" />,
     },
     {
       id: 2,
@@ -26,7 +26,7 @@ const Alerts = () => {
       vendor: "Vikram Joshi",
       subject: "Inquiry about Pending KYC",
       bg: "bg-[#FCEBFE]",
-      icon: <TbMessageQuestion className="w-6 h-6 text-pink-600" />,
+      icon: <TbCalendarTime className="w-6 h-6 text-[#004AAD]" />,
     },
     {
       id: 3,
@@ -36,7 +36,7 @@ const Alerts = () => {
       received: "September 28, 2025, 2:15 PM",
       subject: "Inquiry about High refund rate",
       bg: "bg-[#EBF6FE]",
-      icon: <FaRegClock className="w-6 h-6 text-blue-600" />,
+      icon: <TbMessageQuestion className="w-6 h-6 text-[#004AAD]" />,
     },
     {
       id: 4,
@@ -45,7 +45,7 @@ const Alerts = () => {
       received: "September 29, 2025, 2:15 PM",
       subject: "Inquiry about low ratings",
       bg: "bg-[#FCF4EE]",
-      icon: <FaRegStar className="w-6 h-6 text-yellow-600" />,
+      icon: <TbMessageQuestion className="w-6 h-6 text-[#004AAD]" />,
     },
   ];
 
@@ -75,22 +75,24 @@ const Alerts = () => {
                 key={alert.id}
                 className={`rounded-xl p-4 flex flex-col gap-2 ${alert.bg}`}
               >
-                
+                <div className="flex gap-2">
                 {alert.icon}
-                <div className="flex items-center gap-2 font-medium text-[18px] text-[#1F2937]">
+                <div className="flex flex-col  gap-2 font-medium text-[18px] text-[#1F2937]">
                   {/* {alert.icon} */}
                   {alert.title}
-                </div>
-                {alert.date && (
+
+                  {alert.date && (
                   <p className="text-sm text-gray-700">
                     <strong>Date & Time:</strong> {alert.date}
                   </p>
                 )}
+
                 {alert.vendor && (
                   <p className="text-sm text-gray-700">
                     <strong>Vendor / Name:</strong> {alert.vendor}
                   </p>
                 )}
+
                 {alert.email && (
                   <p className="text-sm text-gray-700">
                     <strong>Email:</strong> {alert.email}
@@ -109,6 +111,11 @@ const Alerts = () => {
                 <p className="text-sm font-medium text-green-600">
                   Subject: {alert.subject}
                 </p>
+                </div>
+                
+                
+                
+              </div>
               </div>
             ))}
           </div>

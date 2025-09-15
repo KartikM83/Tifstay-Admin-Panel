@@ -1,6 +1,6 @@
 import Sidebar from "../../../Component/Layouts/Sidebar";
 import { IoIosSearch } from "react-icons/io";
-import { useMemo, useState } from "react";
+import {  useState } from "react";
 import { PiFunnel } from "react-icons/pi";
 import { IoMdClose } from "react-icons/io";
 import { RiDeleteBin6Line } from "react-icons/ri";
@@ -16,7 +16,7 @@ function PgListing({ users, setUsers }) {
    const { listing } = useParams(); 
   //  console.log(listing);
    
-   const cfg = dataConfig[listing] ?? data.guests ;
+   const cfg = dataConfig[listing];
   //  console.log(cfg);
   //  console.log(cfg.listTitle);
 
@@ -116,13 +116,7 @@ function PgListing({ users, setUsers }) {
           />
         </div>
 
-        {/* Create Button */}
-        {/* <div
-          className="w-[200px] h-[40px] bg-[#FF6B00] flex items-center justify-center rounded-[8px] text-white cursor-pointer hover:bg-orange-600 transition"
-          onClick={() => navigate(`/${role}/create`)}
-        >
-          {cfg.createButton}
-        </div> */}
+       
       </div>
 
       {/* Table Section */}
@@ -365,10 +359,9 @@ function PgListing({ users, setUsers }) {
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40">
           <div className="bg-white rounded-lg shadow-lg p-6 w-[450px] flex flex-col gap-4 items-center">
             <img src={logo} alt="" className="w-[246px] h-[56px]" />
-            <h2 className="text-lg font-semibold">Remove User</h2>
+            <h2 className="text-lg font-semibold">Remove Listing</h2>
             <p className="text-[#666060] text-[16px] text-center">
-              Are you sure you want to remove this user? This action cannot be
-              undone.
+              Are you sure you want to remove from listing? This action cannot be undone.
             </p>
             <div className="flex justify-center gap-4">
               <button
@@ -381,7 +374,7 @@ function PgListing({ users, setUsers }) {
                 onClick={handleRemove}
                 className="w-[200px] h-[40px] rounded-[8px] bg-[#004AAD] text-white"
               >
-                Remove
+                Delete
               </button>
             </div>
           </div>

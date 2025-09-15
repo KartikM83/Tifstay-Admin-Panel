@@ -1,60 +1,38 @@
 import { IoArrowBackCircleOutline } from "react-icons/io5";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
-import logo from "../../../assets/image.png"
 import roleConfig from "./roleConfig";
 
 function EditOwner({ users, setUsers }) {
   const navigate = useNavigate();
-  const location = useLocation();
-const { id } = useParams();
-const [isEditable ,setIsEditable] = useState(false);
- const [showPopup, setShowPopup] = useState(false);
-  const { role } = useParams(); 
-   const cfg = roleConfig[role] ?? roleConfig.guests;
+  const { id, role } = useParams();
 
+  const cfg = roleConfig[role] ?? roleConfig.guests;
 
+  // find user first
+  const user = users.find((u) => u.id === parseInt(id));
 
-    const user = users.find((u) => u.id === parseInt(id));
-  //   const [showPopup, setShowPopup] = useState(false);
+  // define states safely (only if user exists)
+  const [profile, setProfile] = useState(user?.profile || "");
+  const [name, setName] = useState(user?.name || "");
+  const [phone, setPhone] = useState(user?.phone || "");
+  const [email, setEmail] = useState(user?.email || "");
+  const [dob] = useState(user?.dob || ""); // not editable → remove setter
+  const [address, setAddress] = useState(user?.address || "");
+  const [status] = useState(user?.status || "Active"); // not editable → remove setter
+  const [aadhaar] = useState(user?.aadhaar || ""); // not editable → remove setter
+  const [password, setPassword] = useState(user?.password || "");
+  const [accountNumber, setAccountNumber] = useState(user?.accountNumber || "");
+  const [ifscCode, setIfscCode] = useState(user?.ifscCode || "");
+  const [accountType, setAccountType] = useState(user?.accountType || "");
+  const [accountHolderName, setAccountHolderName] = useState(
+    user?.accountHolderName || ""
+  );
 
-    if (!user) {
-      return (
-        <div className="p-6 bg-white rounded shadow">
-          <h2 className="text-xl font-semibold">Guest Details</h2>
-          <p>No user data found for ID: {id}</p>
-        </div>
-      );
-    }
-
-
-const [profile, setProfile] = useState(user.profile);
-const [name, setName] = useState(user.name);
-const [phone, setPhone] = useState(user.phone);
-const [email, setEmail] = useState(user.email);
-const [dob, setDob] = useState(user.dob);
-const [address, setAddress] = useState(user.address);
-const [status, setStatus] = useState(user.status);
-const [aadhaar, setAadhaar] = useState(user.aadhaar);
-const [password, setPassword] = useState(user.password);
-const [accountNumber, setAccountNumber] = useState(user.accountNumber);
-const [ifscCode, setIfscCode] = useState(user.ifscCode);
-const [accountType, setAccountType] = useState(user.accountType);
-const [accountHolderName, setAccountHolderName] = useState(user.accountHolderName);
-
-  //   const handleConfirm = () => {
-  //     setUsers((prev) =>
-  //       prev.map((u) =>
-  //         u.id === user.id
-  //           ? { ...u, status: u.status === "Active" ? "Blocked" : "Active" }
-  //           : u
-  //       )
-  //     );
-  //     setShowPopup(false);
-  //   };
-
-  const handleSave=()=>{
-    const updateUser ={
+  // handle update
+  const handleSave = () => {
+    if (!user) return;
+    const updateUser = {
       ...user,
       name,
       profile,
@@ -71,20 +49,19 @@ const [accountHolderName, setAccountHolderName] = useState(user.accountHolderNam
       accountHolderName,
     };
 
-    setUsers((prevUser)=>
-      prevUser.map((u)=>(u.id ===user.id ?updateUser:u))
+    setUsers((prevUser) =>
+      prevUser.map((u) => (u.id === user.id ? updateUser : u))
     );
-    setIsEditable(false);
     navigate(-1);
   };
 
-  const handleConfirm =()=>{
-    setUsers((prev)=>
-      prev.map((u)=>u.id === user.id? {...u,status: u.status ==="Active" ?"Blocked" :"Active"}:u)
-
-
-  );
-  setShowPopup(false);
+  if (!user) {
+    return (
+      <div className="p-6 bg-white rounded shadow">
+        <h2 className="text-xl font-semibold">Guest Details</h2>
+        <p>No user data found for ID: {id}</p>
+      </div>
+    );
   }
 
   return (
@@ -103,30 +80,22 @@ const [accountHolderName, setAccountHolderName] = useState(user.accountHolderNam
       {/* Main Card */}
       <div className="bg-white px-4 py-4 flex flex-col gap-6 items-center">
         <div className="w-full min-h-[600px] p-6 rounded-[8px] bg-white shadow flex flex-col gap-6 border border-[#A5A5A5]">
-          {/* Profile Info */}
-
-          {/* Form Section */}
-
-          <div className=" p-4 border border-[#A5A5A5] rounded-[16px] flex flex-col gap-4">
+          {/* Basic Information */}
+          <div className="p-4 border border-[#A5A5A5] rounded-[16px] flex flex-col gap-4">
             <div className="text-gray-700 text-xl font-semibold">
               Basic Information
             </div>
 
             {/* Row 1 */}
-
             <div className="flex gap-4 ">
               <div className="flex flex-col w-full gap-1">
-                <label className="text-sm font-medium text-gray-600">
-                  Name:
-                </label>
+                <label className="text-sm font-medium text-gray-600">Name:</label>
                 <input
                   type="text"
                   value={name}
-               
-                  onChange={(e)=>setName(e.target.value)}
-                 placeholder="Mahesh Pawar"
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="Mahesh Pawar"
                   className="bg-white border border-gray-300 rounded-[8px] px-4 py-3 outline-none"
-                  
                 />
               </div>
 
@@ -137,8 +106,7 @@ const [accountHolderName, setAccountHolderName] = useState(user.accountHolderNam
                 <input
                   type="text"
                   value={profile}
-             
-                  onChange={(e)=>setProfile(e.target.value)}
+                  onChange={(e) => setProfile(e.target.value)}
                   placeholder="PG/Hostel Owner"
                   className="bg-white border border-gray-300 rounded-[8px] px-4 py-3 outline-none"
                 />
@@ -154,16 +122,14 @@ const [accountHolderName, setAccountHolderName] = useState(user.accountHolderNam
                 <input
                   type="text"
                   value={phone}
-            
-                  onChange={(e)=>{
+                  onChange={(e) => {
                     const value = e.target.value;
-                    if(/^\d*$/.test(value)){
+                    if (/^\d*$/.test(value)) {
                       setPhone(value);
                     }
                   }}
                   placeholder="9876543210"
                   className="bg-white border border-gray-300 rounded-[8px] px-4 py-3 outline-none"
-                 
                 />
               </div>
               <div className="flex flex-col w-full gap-1">
@@ -173,11 +139,9 @@ const [accountHolderName, setAccountHolderName] = useState(user.accountHolderNam
                 <input
                   type="email"
                   value={email}
-          
-                  onChange={(e)=>setEmail(e.target.value)}
+                  onChange={(e) => setEmail(e.target.value)}
                   placeholder="example@mail.com"
                   className="bg-white border border-gray-300 rounded-[8px] px-4 py-3 outline-none"
-                  
                 />
               </div>
             </div>
@@ -191,11 +155,9 @@ const [accountHolderName, setAccountHolderName] = useState(user.accountHolderNam
                 <input
                   type="text"
                   value={password}
-                 
-                  onChange={(e)=>setPassword(e.target.value)}
+                  onChange={(e) => setPassword(e.target.value)}
                   placeholder="SDBH@2025"
                   className="bg-white border border-gray-300 rounded-[8px] px-4 py-3 outline-none"
-                  
                 />
               </div>
 
@@ -206,23 +168,21 @@ const [accountHolderName, setAccountHolderName] = useState(user.accountHolderNam
                 <input
                   type="text"
                   value={address}
-           
-                  onChange={(e)=>setAddress(e.target.value)}
+                  onChange={(e) => setAddress(e.target.value)}
                   placeholder="4517 Washington Ave. Manchester, Kentucky 39495"
                   className="bg-white border border-gray-300 rounded-[8px] px-4 py-3 outline-none"
-                 
                 />
               </div>
             </div>
           </div>
 
-          <div className=" p-4 border border-[#A5A5A5] rounded-[16px] flex flex-col gap-4">
+          {/* Bank Details */}
+          <div className="p-4 border border-[#A5A5A5] rounded-[16px] flex flex-col gap-4">
             <div className="text-gray-700 text-xl font-semibold">
               Bank Details
             </div>
 
             {/* Row 1 */}
-
             <div className="flex gap-4 ">
               <div className="flex flex-col w-full gap-1">
                 <label className="text-sm font-medium text-gray-600">
@@ -233,17 +193,13 @@ const [accountHolderName, setAccountHolderName] = useState(user.accountHolderNam
                   placeholder="98765432101"
                   maxLength={18}
                   value={accountNumber}
-            
-                  onChange={(e)=>{
+                  onChange={(e) => {
                     const value = e.target.value;
                     if (/^\d*$/.test(value)) {
                       setAccountNumber(value);
                     }
-                   
                   }}
-                  
                   className="bg-white border border-gray-300 rounded-[8px] px-4 py-3 outline-none"
-                 
                 />
               </div>
 
@@ -254,11 +210,9 @@ const [accountHolderName, setAccountHolderName] = useState(user.accountHolderNam
                 <input
                   type="text"
                   value={ifscCode}
-               
-                  onChange={(e)=>setIfscCode(e.target.value)}
+                  onChange={(e) => setIfscCode(e.target.value)}
                   placeholder="SBIN0001234"
                   className="bg-white border border-gray-300 rounded-[8px] px-4 py-3 outline-none"
-                 
                 />
               </div>
             </div>
@@ -272,11 +226,9 @@ const [accountHolderName, setAccountHolderName] = useState(user.accountHolderNam
                 <input
                   type="text"
                   value={accountType}
-            
-                  onChange={(e)=>setAccountType(e.target.value)}
+                  onChange={(e) => setAccountType(e.target.value)}
                   placeholder="Current"
                   className="bg-white border border-gray-300 rounded-[8px] px-4 py-3 outline-none"
-                 
                 />
               </div>
               <div className="flex flex-col w-full gap-1">
@@ -286,8 +238,7 @@ const [accountHolderName, setAccountHolderName] = useState(user.accountHolderNam
                 <input
                   type="text"
                   value={accountHolderName}
-            
-                  onChange={(e)=>setAccountHolderName(e.target.value)}
+                  onChange={(e) => setAccountHolderName(e.target.value)}
                   placeholder="Mahesh Pawar"
                   className="bg-white border border-gray-300 rounded-[8px] px-4 py-3 outline-none"
                 />
@@ -295,14 +246,14 @@ const [accountHolderName, setAccountHolderName] = useState(user.accountHolderNam
             </div>
           </div>
         </div>
-        <div className="flex gap-4">      
-            <button onClick={handleSave} className="w-[200px] h-[40px] bg-[#004AAD] rounded-[8px] text-white">
-          Update
-        </button>
-
-     
+        <div className="flex gap-4">
+          <button
+            onClick={handleSave}
+            className="w-[200px] h-[40px] bg-[#004AAD] rounded-[8px] text-white"
+          >
+            Update
+          </button>
         </div>
-        
       </div>
     </div>
   );

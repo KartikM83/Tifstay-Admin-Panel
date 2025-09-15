@@ -1,83 +1,46 @@
 import { IoArrowBackCircleOutline } from "react-icons/io5";
-import { Navigate, NavLink, useLocation, useNavigate, useParams } from "react-router-dom";
+import { Navigate, NavLink, useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import logo from "../../../assets/image.png";
 import roleConfig from "./roleConfig";
 
 function EditProvider({ users, setUsers }) {
+  
   const navigate = useNavigate();
-  const location = useLocation();
-const { id } = useParams();
-const [isEditable ,setIsEditable] = useState(false);
- const [showPopup, setShowPopup] = useState(false);
- const { role } = useParams(); 
-   const cfg = roleConfig[role] ?? roleConfig.guests;
+  const { id, role } = useParams();
+  const [isEditable] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
 
+  // find user early
+  const user = users.find((u) => u.id === parseInt(id));
 
+  // define states safely (with fallback values if user is undefined)
+  const [profile, setProfile] = useState(user?.profile ?? "");
+  const [name, setName] = useState(user?.name ?? "");
+  const [phone, setPhone] = useState(user?.phone ?? "");
+  const [email, setEmail] = useState(user?.email ?? "");
+  
+  const [address, setAddress] = useState(user?.address ?? "");
+ 
+  const [password, setPassword] = useState(user?.password ?? "");
+  const [accountNumber, setAccountNumber] = useState(user?.accountNumber ?? "");
+  const [ifscCode, setIfscCode] = useState(user?.ifscCode ?? "");
+  const [accountType, setAccountType] = useState(user?.accountType ?? "");
+  const [accountHolderName, setAccountHolderName] = useState(user?.accountHolderName ?? "");
 
-    const user = users.find((u) => u.id === parseInt(id));
-  //   const [showPopup, setShowPopup] = useState(false);
+  const cfg = roleConfig[role] ?? roleConfig.guests;
 
-    if (!user) {
-      return (
-        <div className="p-6 bg-white rounded shadow">
-          <h2 className="text-xl font-semibold">Guest Details</h2>
-          <p>No user data found for ID: {id}</p>
-        </div>
-      );
-    }
-
-    <div>Kartik</div>
-
-const [profile, setProfile] = useState(user.profile);
-const [name, setName] = useState(user.name);
-const [phone, setPhone] = useState(user.phone);
-const [email, setEmail] = useState(user.email);
-const [dob, setDob] = useState(user.dob);
-const [address, setAddress] = useState(user.address);
-const [status, setStatus] = useState(user.status);
-const [aadhaar, setAadhaar] = useState(user.aadhaar);
-const [password, setPassword] = useState(user.password);
-const [accountNumber, setAccountNumber] = useState(user.accountNumber);
-const [ifscCode, setIfscCode] = useState(user.ifscCode);
-const [accountType, setAccountType] = useState(user.accountType);
-const [accountHolderName, setAccountHolderName] = useState(user.accountHolderName);
-
-  //   const handleConfirm = () => {
-  //     setUsers((prev) =>
-  //       prev.map((u) =>
-  //         u.id === user.id
-  //           ? { ...u, status: u.status === "Active" ? "Blocked" : "Active" }
-  //           : u
-  //       )
-  //     );
-  //     setShowPopup(false);
-  //   };
-
-  const handleSave=()=>{
-    const updateUser ={
-      ...user,
-      name,
-      profile,
-      phone,
-      email,
-      dob,
-      address,
-      status,
-      aadhaar,
-      password,
-      accountNumber,
-      ifscCode,
-      accountType,
-      accountHolderName,
-    };
-
-    setUsers((prevUser)=>
-      prevUser.map((u)=>(u.id ===user.id ?updateUser:u))
+  // now safely return if user not found
+  if (!user) {
+    return (
+      <div className="p-6 bg-white rounded shadow">
+        <h2 className="text-xl font-semibold">Guest Details</h2>
+        <p>No user data found for ID: {id}</p>
+      </div>
     );
-    setIsEditable(false);
-  };
+  }
 
+  
   const handleConfirm =()=>{
     setUsers((prev)=>
       prev.map((u)=>u.id === user.id? {...u,status: u.status ==="Active" ?"Blocked" :"Active"}:u)
@@ -331,14 +294,11 @@ const [accountHolderName, setAccountHolderName] = useState(user.accountHolderNam
 
           </div>
         )}
-            <NavLink
-            to={`/${role}/edit/${user.id}`}
+            <NavLink to={`/users/${role}/edit/${user.id}`}
             >
                <button  className="w-[200px] h-[40px] bg-[#004AAD] rounded-[8px] text-white">
           Edit
         </button>
-
-              
             </NavLink>
            
        

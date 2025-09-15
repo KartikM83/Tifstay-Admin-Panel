@@ -1,70 +1,36 @@
 import Sidebar from "../../../Component/Layouts/Sidebar";
 import { IoIosSearch } from "react-icons/io";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { PiFunnel } from "react-icons/pi";
 import { IoMdClose } from "react-icons/io";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { FiEye } from "react-icons/fi";
-import { useNavigate, useParams } from "react-router-dom";
-import logo from "../../../assets/image.png";
+
 import { FaRegEdit } from "react-icons/fa";
 
 import paymentConfig from "./PaymentConfig";
+import { useParams } from "react-router-dom";
+import NotFound from "../offers&Discount/NotFound";
 
-function OverView({ users, setUsers }) {
-    const { payment } = useParams();
-  const cfg = paymentConfig[payment] ?? paymentConfig.guests;
+function OverView() {
+  const { payment } = useParams();
+  const cfg = paymentConfig[payment];
+ 
+
 
   const [filterOpen, setFilterOpen] = useState(true); // ✅ Filter box open by default
-  const [selectedStatus, setSelectedStatus] = useState(["Today"]); 
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [userToDelete, setUserToDelete] = useState(null);
+  const [selectedStatus, setSelectedStatus] = useState(["Today"]);
+
   const [searchQuery, setSearchQuery] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
-  const usersPerPage = 5;
+  const [setCurrentPage] = useState(1);
 
-  const navigate = useNavigate();
-
+   if (!cfg) {
+    return <NotFound />;
+  }
   const toggleStatus = (status) => {
     if (selectedStatus[0] === status) return; // Do nothing if already selected
     setSelectedStatus([status]);
     setCurrentPage(1);
-  };
-
-  const searchFilteredUsers = users.filter((user) => {
-    const query = searchQuery.toLowerCase();
-    return user.bookingId.toString().includes(query);
-  });
-
-  const filteredUsers =
-    selectedStatus.length === 0
-      ? searchFilteredUsers
-      : searchFilteredUsers.filter((user) =>
-          selectedStatus.includes(user.status)
-        );
-
-  const totalPages = Math.ceil(filteredUsers.length / usersPerPage);
-  const indexOfLastUser = currentPage * usersPerPage;
-  const indexOfFirstUser = indexOfLastUser - usersPerPage;
-  const currentUsers = filteredUsers.slice(indexOfFirstUser, indexOfLastUser);
-
-
-  // 🗑 Trash click
-  const handleDeleteClick = (user) => {
-    setUserToDelete(user);
-    setShowDeleteModal(true);
-  };
-
-  // ❌ Cancel delete
-  const handleCancelDelete = () => {
-    setUserToDelete(null);
-    setShowDeleteModal(false);
-  };
-
-  // ✅ Remove user
-  const handleRemove = () => {
-    setUsers((prev) => prev.filter((u) => u.id !== userToDelete.id));
-    setShowDeleteModal(false);
   };
 
   return (
@@ -153,18 +119,21 @@ function OverView({ users, setUsers }) {
                 ))}
               </div>
             )}
-
-            
           </div>
 
           <div className="w-full min-h-[166px] bg-red-600">
-            <div className="w-[338px] h-full bg-blue-600"> jj</div>
-          </div>
-
+            <div
+              className="w-[338px] h-[166px] bg-blue-600 rounded-[16px] p-6"
+              style={{
+                background:
+                  "linear-gradient(180deg, #FFE7D6 0.86%, #F7E8DE 55.15%, #ECE9E9 76.27%)",
+              }}
+            >
+              <div className="w-[290px] h-[127px] "></div>
             
-          
+            </div>
+          </div>
         </div>
-        
       </div>
     </div>
   );

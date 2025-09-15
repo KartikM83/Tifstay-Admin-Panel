@@ -26,7 +26,7 @@ const ForgotPassword = () => {
       <div className="w-[700px] h-[700px] bg-white rounded-[24px] shadow-lg flex flex-col items-center justify-start p-10 ">
 
         {/* Sub Box (form elements) */}
-       <form className="w-[360px] h-[565px] flex flex-col gap-[24px] items-center justify-start ">
+       <form className="w-[360px] h-[565px] flex flex-col gap-[24px] items-center justify-start " onSubmit={handleGetOTP}>
 
 
           {/* Logo Box */}

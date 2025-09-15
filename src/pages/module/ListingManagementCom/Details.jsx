@@ -18,6 +18,7 @@
     console.log(listing);
       const navigate = useNavigate();
       // const { id } = useParams();
+      const [showPopup, setShowPopup] = useState(false);
 
       const user =users.find((u)=>u.id ===parseInt(id))
       if (!user) {
@@ -39,7 +40,7 @@
           setUsers((prevUser)=>prevUser.map((u)=>u.id ===user.id ?{...u ,status:newStatus} :u))
       }
 
-      const [showPopup, setShowPopup] = useState(false);
+      
 
 
 

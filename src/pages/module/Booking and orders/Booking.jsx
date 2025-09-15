@@ -1,6 +1,6 @@
 import Sidebar from "../../../Component/Layouts/Sidebar";
 import { IoIosSearch } from "react-icons/io";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { PiFunnel } from "react-icons/pi";
 import { IoMdClose } from "react-icons/io";
 import { RiDeleteBin6Line } from "react-icons/ri";
@@ -73,10 +73,7 @@ function Booking({ users, setUsers }) {
   const currentUsers = filteredUsers.slice(indexOfFirstUser, indexOfLastUser);
 
   // 🗑 Trash click
-  const handleDeleteClick = (user) => {
-    setUserToDelete(user);
-    setShowDeleteModal(true);
-  };
+ 
 
   // ❌ Cancel delete
   const handleCancelDelete = () => {

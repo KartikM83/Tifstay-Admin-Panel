@@ -28,6 +28,8 @@ import Reviews from "../pages/module/Reviews";
 import Security from "../pages/module/securityLog";
 import ChatList from "../pages/module/ChatList/chatList";
 import ChatDetails from "../pages/module/ChatList/chatListDetails";
+import { pgHostelData, tiffinData, userData } from '../pages/module/Dashboard/overviewData';
+import OverviewPage from "../pages/module/Dashboard/OverviewPage";
 
 function PublicRoute() {
   const initialUsers = [
@@ -570,7 +572,9 @@ function PublicRoute() {
         {/* Dashboard */}
         <Route path="dashboard" element={<Dashboard users={dashboardData} setUsers={setDashboardData} />} />
         <Route path="dashboard/alerts" element={<Alerts />} />
-
+        <Route path="/dashboard/pg-hostel-overview" element={<OverviewPage title="PG / Hostel Overview" data={pgHostelData} />}/>
+        <Route path="/dashboard/tiffin-restaurant-overview" element={<OverviewPage title="Tiffin / Restaurant Overview" data={tiffinData} />} />
+        <Route path="/dashboard/user-overview" element={<OverviewPage title="User Overview" data={userData} />} />
         {/* User Management */}
         <Route path="users/:role" element={<Owner users={users} setUsers={setUsers} />} />
         <Route path="users/:role/create" element={<CreateOwner users={users} setUsers={setUsers} />} />

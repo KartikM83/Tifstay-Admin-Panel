@@ -1,6 +1,6 @@
 
 import { IoIosSearch } from "react-icons/io";
-import { useMemo, useState } from "react";
+import {useState } from "react";
 import { PiFunnel } from "react-icons/pi";
 import { IoMdClose } from "react-icons/io";
 import { RiDeleteBin6Line } from "react-icons/ri";
@@ -38,10 +38,7 @@ function Owner({ users, setUsers }) {
   };
 
 
-  const listForRole = useMemo(
-  () => users.filter((u) => u.kind === role),
-  [users, role]
-);
+
 
   const removeStatus = (status) => {
     setSelectedStatus((prev) => prev.filter((s) => s !== status));

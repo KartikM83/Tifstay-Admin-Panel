@@ -1,56 +1,36 @@
 import { IoArrowBackCircleOutline } from "react-icons/io5";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 
 import roleConfig from "./roleConfig";
 
-function CreateOwner({ users, setUsers }) {
+function CreateOwner({ setUsers }) {
   const navigate = useNavigate();
 
-const [isEditable ,setIsEditable] = useState(false);
    const { role } = useParams(); 
    const cfg = roleConfig[role] ?? roleConfig.guests;
 
 
 
 
-  //   const user = users.find((u) => u.id === parseInt(id));
-  // //   const [showPopup, setShowPopup] = useState(false);
 
-  //   if (!user) {
-  //     return (
-  //       <div className="p-6 bg-white rounded shadow">
-  //         <h2 className="text-xl font-semibold">Guest Details</h2>
-  //         <p>No user data found for ID: {id}</p>
-  //       </div>
-  //     );
-  //   }
 
 
  const [name, setName] = useState("");
   const [profile, setProfile] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
-  const [dob, setDob] = useState("");
+  const [dob ] = useState("");
   const [address, setAddress] = useState("");
-  const [status, setStatus] = useState("Active");
-  const [aadhaar, setAadhaar] = useState("");
+  const [status] = useState("Active");
+  const [aadhaar] = useState("");
   const [password, setPassword] = useState("");
   const [accountNumber, setAccountNumber] = useState("");
   const [ifscCode, setIfscCode] = useState("");
   const [accountType, setAccountType] = useState("");
   const [accountHolderName, setAccountHolderName] = useState("");
 
-  //   const handleConfirm = () => {
-  //     setUsers((prev) =>
-  //       prev.map((u) =>
-  //         u.id === user.id
-  //           ? { ...u, status: u.status === "Active" ? "Blocked" : "Active" }
-  //           : u
-  //       )
-  //     );
-  //     setShowPopup(false);
-  //   };
+
 
   const handleCreate = () => {
 
